@@ -1,0 +1,17 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: check-for-duplicate-files
+        name: Check for duplicate files in data/
+        entry: python check_duplicates.py
+        language: python
+        files: ^data/
+        pass_filenames: false
+        
+    -   id: check-jupyter-notebooks
+        name: Check Jupyter notebooks for errors
+        entry: python check_notebooks.py
+        language: python
+        files: \.ipynb$
+        pass_filenames: false
+        additional_dependencies: ['jupyter', 'nbformat', 'pandas', 'numpy', 'matplotlib', 'seaborn']
