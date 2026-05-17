@@ -4,19 +4,21 @@ import subprocess
 import sys
 from pathlib import Path
 
+
 def check_notebooks(directory):
     """
     Executes all Jupyter notebooks in a directory to check for errors.
-    
+
     Args:
         directory (str): The path to the directory containing notebooks.
-        
+
     Returns:
         bool: True if all notebooks run successfully, False otherwise.
     """
     notebook_dir = Path(directory)
     if not notebook_dir.is_dir():
-        print(f"Info: Directory '{directory}' not found, skipping notebook check.", file=sys.stderr)
+        print(
+            f"Info: Directory '{directory}' not found, skipping notebook check.", file=sys.stderr)
         return True
 
     notebooks = list(notebook_dir.glob('*.ipynb'))
@@ -42,7 +44,8 @@ def check_notebooks(directory):
             )
             print(f"  \u2713 Success: {notebook} executed without errors.")
         except subprocess.CalledProcessError as e:
-            print(f"  \u2717 Error: Failed to execute notebook: {notebook}", file=sys.stderr)
+            print(
+                f"  \u2717 Error: Failed to execute notebook: {notebook}", file=sys.stderr)
             print("\n" + "="*80, file=sys.stderr)
             print(f"ERROR in {notebook}", file=sys.stderr)
             print("="*80, file=sys.stderr)
@@ -56,6 +59,7 @@ def check_notebooks(directory):
 
     return all_passed
 
+
 def main():
     """
     Main function to run the notebook check.
@@ -66,6 +70,7 @@ def main():
     else:
         print("\nOne or more notebooks failed to execute.")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
