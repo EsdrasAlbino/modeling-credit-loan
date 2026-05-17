@@ -1,0 +1,37 @@
+Title,Description,Priority,Status,Labels,Estimate
+"Phase 2 - Setup EDA notebook structure","Create EDA sections and narrative cells for application and behavioral analyses.",2,"Backlog","ml,credit-risk,phase-2,eda",2
+"Phase 2 - Profile application dataset","Run profiling for schema, types, missingness, cardinality, and class balance.",2,"Backlog","ml,credit-risk,phase-2,eda",3
+"Phase 2 - Profile application - missingness report","Create column-wise missingness report and flag high-missing columns.",3,"Backlog","ml,credit-risk,phase-2,eda,data-quality",2
+"Phase 2 - Profile application - categorical cardinality","List high-cardinality categorical features and recommend encoding strategy.",3,"Backlog","ml,credit-risk,phase-2,eda,data-prep",2
+"Phase 2 - Analyze behavioral dataset","Inspect pedidos distributions (valor, atraso, frequência) and detect anomalies/outliers.",2,"Backlog","ml,credit-risk,phase-2,eda",3
+"Phase 2 - Behavioral - outlier handling plan","Define rules for outlier detection and handling for order `valor` and `atraso`.",3,"Backlog","ml,credit-risk,phase-2,eda,data-quality",2
+"Phase 2 - Build core EDA charts - idade_cnpj","Plot default rate by idade_cnpj intervals and summarize trend.",1,"Backlog","ml,credit-risk,phase-2,eda,visualization",2
+"Phase 2 - Build core EDA charts - segmento & UF","Compare inadimplencia by segmento_cliente and uf (heatmap & bar plots).",1,"Backlog","ml,credit-risk,phase-2,eda,visualization",3
+"Phase 2 - Build core EDA charts - Serasa & Platforms","Charts for negativacoes/protestos and iFood/Google presence vs default.",1,"Backlog","ml,credit-risk,phase-2,eda,visualization",3
+"Phase 2 - Write EDA findings summary","Document key hypotheses, validated patterns, and risks for modeling.",2,"Backlog","ml,credit-risk,phase-2,eda,documentation",2
+"Phase 3 - Engineer application features","Implement preprocessing: null handling, categorical encoding, interval midpoint conversion, boolean indicators.",1,"Backlog","ml,credit-risk,phase-3,feature-engineering",5
+"Phase 3 - Parse and decompose CNAE","Create CNAE division/group/class/subclass features from cnae_codigo.",2,"Backlog","ml,credit-risk,phase-3,feature-engineering",3
+"Phase 3 - Create credores-derived features","Build features from credores list (count, diversity, sector frequency).",2,"Backlog","ml,credit-risk,phase-3,feature-engineering",3
+"Phase 3 - Build behavioral aggregates - value stats","Aggregate pedidos by cliente: min, max, mean, median, std of `valor`.",1,"Backlog","ml,credit-risk,phase-3,feature-engineering",3
+"Phase 3 - Build behavioral aggregates - delay stats","Aggregate pedidos by cliente: mean/max `atraso`, % delayed, delay frequency.",1,"Backlog","ml,credit-risk,phase-3,feature-engineering",3
+"Phase 3 - Build behavioral aggregates - recency & frequency","Compute recency (days since last order) and orders per month for each cliente.",1,"Backlog","ml,credit-risk,phase-3,feature-engineering",3
+"Phase 3 - Validate leakage constraints","Guarantee no temporal leakage in behavioral features and joins.",1,"Backlog","ml,credit-risk,phase-3,data-quality",3
+"Phase 4 - Train logistic baseline (application)","Train baseline logistic regression with proper preprocessing pipeline and stratified split.",1,"Backlog","ml,credit-risk,phase-4,modeling",3
+"Phase 4 - Train tree models (application)","Train Random Forest and XGBoost for application model and compare against baseline.",1,"Backlog","ml,credit-risk,phase-4,modeling",5
+"Phase 4 - Hyperparameter tuning (application)","Run randomized/grid search for best application model and capture experiment settings.",2,"Backlog","ml,credit-risk,phase-4,modeling,tuning",5
+"Phase 4 - Evaluate and persist best model","Generate ROC/PR/confusion matrix and save best application model artifact.",1,"Backlog","ml,credit-risk,phase-4,evaluation",3
+"Phase 4 - Prepare model inferencing script","Write `predict_application_risk.py` to load model and produce scores from new client data.",2,"Backlog","ml,credit-risk,phase-4,delivery",3
+"Phase 5 - Train behavioral baseline","Train logistic baseline on combined application + behavioral feature set.",1,"Backlog","ml,credit-risk,phase-5,modeling",3
+"Phase 5 - Train behavioral advanced models","Train Random Forest/XGBoost behavioral models and compare against baseline.",1,"Backlog","ml,credit-risk,phase-5,modeling",5
+"Phase 5 - Evaluate behavioral feature impact","Identify strongest behavioral predictors and contrast with application predictors.",2,"Backlog","ml,credit-risk,phase-5,evaluation",3
+"Phase 6 - Benchmark all candidates","Create single comparison table with ROC-AUC, precision, recall, F1 across all models.",1,"Backlog","ml,credit-risk,phase-6,comparison",3
+"Phase 6 - Select champion model strategy","Define decision criteria for final model selection and deployment readiness.",1,"Backlog","ml,credit-risk,phase-6,decision",2
+"Phase 7 - Global interpretability analysis","Compute permutation importance and SHAP global summaries for selected models.",1,"Backlog","ml,credit-risk,phase-7,interpretability",5
+"Phase 7 - Local explanation cases - examples","Select 10 representative clients and save SHAP explanations for each.",1,"Backlog","ml,credit-risk,phase-7,interpretability",3
+"Phase 7 - Local explanation cases - automated report","Generate a small notebook that visualizes local explanations for selected cases.",2,"Backlog","ml,credit-risk,phase-7,interpretability,reporting",3
+"Phase 7 - Interpretability governance review","Assess potential bias/proxy variables and document limitations/failure modes.",1,"Backlog","ml,credit-risk,phase-7,governance",3
+"Phase 7 - Interpretability - feature stability","Check feature distributions and SHAP stability across train/test and segments.",2,"Backlog","ml,credit-risk,phase-7,interpretability",3
+"Phase 8 - Define credit policy thresholds","Design approval/denial/review bands based on risk score and business trade-offs.",1,"Backlog","ml,credit-risk,phase-8,policy",3
+"Phase 8 - Design recurring-client policy","Define how behavioral risk updates limits and cadence of reassessment.",1,"Backlog","ml,credit-risk,phase-8,policy",3
+"Phase 8 - Run scenario impact analysis","Estimate approval rate, expected loss, and portfolio risk under candidate thresholds.",1,"Backlog","ml,credit-risk,phase-8,policy,simulation",5
+"Phase 8 - Final recommendation memo","Produce final write-up with model choice, interpretability evidence, and policy proposal.",1,"Backlog","ml,credit-risk,phase-8,documentation",3
