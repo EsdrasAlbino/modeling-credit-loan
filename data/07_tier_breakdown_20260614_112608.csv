@@ -1,0 +1,4 @@
+tier,n_clients,pct_total,default_rate,roc_auc,precision,recall,f1
+BEHAVIORAL,664,22.1%,20.8%,0.9432,0.4491,0.9275,0.6052
+APPLICATION,998,33.3%,33.4%,0.9095,0.7933,0.8529,0.822
+MANUAL_REVIEW,1338,44.6%,35.1%,0.6921,0.3505,1.0,0.5191

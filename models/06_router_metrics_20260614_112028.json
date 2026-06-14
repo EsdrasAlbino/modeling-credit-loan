@@ -1,0 +1,23 @@
+{
+  "threshold_A": 0.5,
+  "threshold_B": 0.6,
+  "routing_distribution": {
+    "MANUAL_REVIEW": 1338,
+    "APPLICATION": 998,
+    "BEHAVIORAL": 664
+  },
+  "auc_baseline": 0.8044,
+  "auc_rule_based_router": 0.85,
+  "auc_ml_router": 0.8476,
+  "lift_rule_based": 0.0456,
+  "lift_ml_router": 0.0432,
+  "ml_router_features": [
+    "score_A",
+    "score_B",
+    "orders_per_month",
+    "pct_orders_delayed",
+    "delay_mean",
+    "p_app"
+  ],
+  "ml_router_cv_accuracy": 0.7635
+}

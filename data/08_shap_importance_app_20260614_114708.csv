@@ -1,0 +1,77 @@
+feature,mean_abs_shap
+idade_cnpj_mid,0.5532641
+serasa_socio_tem_negativacao,0.37000918
+serasa_n_setores,0.19342802
+segmento_cliente_Segmento 16,0.1410889
+fonte_cliente_Fonte 5,0.13782538
+capital_social_mid,0.10208574
+natureza_juridica_213-5 - Empresário (Individual),0.09133433
+natureza_juridica_206-2 - Sociedade Empresária Limitada,0.055818357
+segmento_cliente_Segmento 18,0.05299971
+serasa_contagem_negativacoes,0.049955275
+fonte_cliente_Fonte 2,0.045374144
+cnae_divisao_77,0.01626522
+segmento_cliente_Segmento 5,0.016100893
+segmento_cliente_Segmento 20,0.015783206
+segmento_cliente_Segmento 19,0.015654238
+cnae_divisao_39,0.014412516
+cnae_divisao_53,0.0122681
+has_google_maps,0.010724524
+has_serasa_negativacao,0.010607684
+ifood_faixa_preco_missing,0.008919795
+segmento_cliente_Segmento 10,0.0073908055
+ifood_faixa_preco_$,0.0066905627
+segmento_cliente_Segmento 11,0.006448802
+segmento_cliente_Segmento 15,0.0051524695
+has_ifood,0.0048431093
+serasa_contagem_protestos,0.004351454
+segmento_cliente_Segmento 3,0.004137239
+segmento_cliente_Segmento 13,0.003684998
+segmento_cliente_Segmento 7,0.0034930608
+segmento_cliente_Segmento 4,0.0017305086
+ifood_faixa_preco_$$,0.001528574
+cnae_divisao_78,0.0013689973
+cnae_divisao_36,0.0011907656
+cnae_divisao_12,0.0011557455
+segmento_cliente_Segmento 21,0.0008496378
+cnae_divisao_79,0.000589527
+cnae_divisao_74,0.0005482114
+cnae_divisao_76,0.00045029845
+natureza_juridica_230-5 - Empresa Individual de Responsabilidade Limitada (de Natureza Empresária),0.0003927639
+segmento_cliente_Segmento 9,0.00011644428
+cnae_divisao_54,0.0
+cnae_divisao_81,0.0
+cnae_divisao_49,0.0
+cnae_divisao_43,0.0
+cnae_divisao_86,0.0
+cnae_divisao_64,0.0
+cnae_divisao_41,0.0
+cnae_divisao_93,0.0
+cnae_divisao_37,0.0
+cnae_divisao_29,0.0
+cnae_divisao_34,0.0
+cnae_divisao_33,0.0
+cnae_divisao_30,0.0
+ifood_faixa_preco_$$$$$,0.0
+cnae_divisao_28,0.0
+cnae_divisao_26,0.0
+segmento_cliente_Segmento 12,0.0
+segmento_cliente_Segmento 17,0.0
+segmento_cliente_Segmento 2,0.0
+segmento_cliente_Segmento 6,0.0
+segmento_cliente_Segmento 8,0.0
+natureza_juridica_224-0 - Sociedade Simples Limitada,0.0
+fonte_cliente_Fonte 3,0.0
+fonte_cliente_Fonte 4,0.0
+google_maps_tem_website,0.0
+google_maps_avaliacao_mid,0.0
+ifood_faixa_preco_$$$,0.0
+ifood_faixa_preco_$$$$,0.0
+segmento_cliente_Segmento 14,0.0
+cnae_divisao_14,0.0
+cnae_divisao_16,0.0
+cnae_divisao_20,0.0
+cnae_divisao_22,0.0
+cnae_divisao_23,0.0
+cnae_divisao_25,0.0
+cnae_divisao_97,0.0

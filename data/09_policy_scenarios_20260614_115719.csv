@@ -1,0 +1,5 @@
+Scenario,Approval rate,Auto-approve rate,Default rate (approved),Expected loss (R$M),Exp loss / client (R$)
+"Baseline (App, p<0.25)",0.214,0.214,0.056,0.43,432.0
+Router — Recommended,0.39,0.255,0.073,1.03,1001.0
+Router — Strict,0.214,0.082,0.028,0.22,356.0
+Router — Permissive,0.607,0.519,0.117,2.56,2049.0

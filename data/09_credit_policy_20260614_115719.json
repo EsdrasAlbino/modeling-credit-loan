@@ -1,0 +1,179 @@
+{
+  "version": "1.0",
+  "date": "20260614_115719",
+  "thresholds": {
+    "BEHAVIORAL": {
+      "approve": 0.25,
+      "deny": 0.35
+    },
+    "APPLICATION": {
+      "approve": 0.15,
+      "deny": 0.25
+    },
+    "MANUAL_REVIEW": {
+      "approve": 0.4,
+      "deny": 0.4
+    }
+  },
+  "credit_limits": {
+    "BEHAVIORAL": [
+      {
+        "p_lo": 0.0,
+        "p_hi": 0.1,
+        "limit_BRL": 25000
+      },
+      {
+        "p_lo": 0.1,
+        "p_hi": 0.18,
+        "limit_BRL": 15000
+      },
+      {
+        "p_lo": 0.18,
+        "p_hi": 0.25,
+        "limit_BRL": 10000
+      }
+    ],
+    "APPLICATION": [
+      {
+        "p_lo": 0.0,
+        "p_hi": 0.08,
+        "limit_BRL": 20000
+      },
+      {
+        "p_lo": 0.08,
+        "p_hi": 0.12,
+        "limit_BRL": 12000
+      },
+      {
+        "p_lo": 0.12,
+        "p_hi": 0.15,
+        "limit_BRL": 8000
+      }
+    ],
+    "MANUAL_REVIEW": [
+      {
+        "p_lo": 0.0,
+        "p_hi": 0.4,
+        "limit_BRL": 8000
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "Scenario": "Baseline (App, p<0.25)",
+      "Approval rate": 0.214,
+      "Auto-approve rate": 0.214,
+      "Default rate (approved)": 0.056,
+      "Expected loss (R$M)": 0.43,
+      "Exp loss / client (R$)": 432.0
+    },
+    {
+      "Scenario": "Router \u2014 Recommended",
+      "Approval rate": 0.39,
+      "Auto-approve rate": 0.255,
+      "Default rate (approved)": 0.073,
+      "Expected loss (R$M)": 1.03,
+      "Exp loss / client (R$)": 1001.0
+    },
+    {
+      "Scenario": "Router \u2014 Strict",
+      "Approval rate": 0.214,
+      "Auto-approve rate": 0.082,
+      "Default rate (approved)": 0.028,
+      "Expected loss (R$M)": 0.22,
+      "Exp loss / client (R$)": 356.0
+    },
+    {
+      "Scenario": "Router \u2014 Permissive",
+      "Approval rate": 0.607,
+      "Auto-approve rate": 0.519,
+      "Default rate (approved)": 0.117,
+      "Expected loss (R$M)": 2.56,
+      "Exp loss / client (R$)": 2049.0
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "New business (idade_cnpj < 6 months)",
+      "condition": "idade_cnpj_mid < 6",
+      "risk": "HIGH \u2014 insufficient operating history",
+      "rule": "Cap credit limit at R$ 5,000 regardless of model score. Flag for quarterly review.",
+      "rationale": "SHAP shows idade_cnpj is the #1 driver. New businesses have higher default rates."
+    },
+    {
+      "case": "S\u00f3cio with active negativa\u00e7\u00e3o (serasa_socio_tem_negativacao=1)",
+      "condition": "serasa_socio_tem_negativacao == 1",
+      "risk": "HIGH \u2014 #2 SHAP driver in Application Model",
+      "rule": "Override approval threshold: require p < 0.10 for AUTO-APPROVE. Otherwise MANUAL.",
+      "rationale": "S\u00f3cio negativa\u00e7\u00e3o is a strong signal; override even if model score is borderline."
+    },
+    {
+      "case": "High-value client with high risk (p \u2265 0.30 but high credit demand)",
+      "condition": "p \u2265 0.30 and capital_social_mid > 50,000",
+      "risk": "MEDIUM \u2014 high potential revenue, elevated risk",
+      "rule": "Route to MANUAL regardless of tier. Analyst may approve with collateral or guarantor.",
+      "rationale": "Model is trained on average clients; large businesses may have unique risk profiles."
+    },
+    {
+      "case": "Behavioral client with sudden payment delays (pct_orders_delayed > 0.5)",
+      "condition": "pct_orders_delayed > 0.5 and tier == BEHAVIORAL",
+      "risk": "HIGH \u2014 deteriorating payment pattern",
+      "rule": "Reduce credit limit by 50% from standard band. Set reassessment in 30 days.",
+      "rationale": "delay_mean and pct_orders_delayed are top SHAP drivers in Behavioral Model."
+    },
+    {
+      "case": "No Serasa data available",
+      "condition": "serasa_contagem_negativacoes == 0 and serasa_n_setores == 0",
+      "risk": "UNKNOWN \u2014 model may be overconfident",
+      "rule": "Treat as MANUAL_REVIEW regardless of router decision. Limit = R$ 5,000 max.",
+      "rationale": "Application Model reliability degrades significantly without Serasa data."
+    }
+  ],
+  "governance": {
+    "override_authority": [
+      "Credit analyst: can upgrade MANUAL \u2192 AUTO-APPROVE (within credit limit cap)",
+      "Credit manager: can override AUTO-DENY for clients with capital_social_mid > 100,000",
+      "No one can override a router MANUAL_REVIEW to AUTO-APPROVE without analyst sign-off"
+    ],
+    "threshold_change_protocol": [
+      "Any change to THRESHOLD_A or THRESHOLD_B requires re-validation of system AUC on holdout set",
+      "Per-tier approval thresholds can be adjusted quarterly based on observed default rates",
+      "Changes must be approved by risk committee and logged with effective date"
+    ],
+    "monitoring": [
+      "Monthly: default rate per tier vs. expected (from model scores) \u2014 alert if \u0394 > 5%",
+      "Quarterly: AUC on new approvals that have seasoned 90+ days",
+      "Quarterly: segment representation in MANUAL_REVIEW tier (bias check)",
+      "Annual: full model retrain with updated data"
+    ],
+    "model_refresh_triggers": [
+      "AUC drops below 0.70 on 90-day cohort",
+      "Default rate of AUTO-APPROVE cohort exceeds 15% (BEHAVIORAL) or 10% (APPLICATION)",
+      "Major change in business model (new product, new client segment)",
+      "Significant shift in behavioral data distribution (e.g., COVID-type event)"
+    ],
+    "data_retention": [
+      "Routing scores (score_A, score_B, tier) persisted per decision for 5 years",
+      "Model predictions logged with model version and timestamp",
+      "All MANUAL decisions logged with analyst ID and justification"
+    ]
+  },
+  "portfolio_summary": {
+    "total_clients": 3000,
+    "default_rate": 0.3133,
+    "routing_dist": {
+      "MANUAL_REVIEW": 1338,
+      "APPLICATION": 998,
+      "BEHAVIORAL": 664
+    },
+    "decision_dist": {
+      "AUTO-DENY": 1829,
+      "AUTO-APPROVE": 765,
+      "MANUAL": 406
+    },
+    "approved_clients": 1171,
+    "total_exposure_BRL": 9607000,
+    "expected_loss_BRL": 1604503,
+    "expected_loss_rate": 0.167
+  }
+}

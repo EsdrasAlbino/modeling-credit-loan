@@ -1,0 +1,66 @@
+{
+  "Baseline (App-only)": {
+    "roc_auc": 0.6233,
+    "accuracy": 0.62,
+    "precision": 0.2703,
+    "recall": 0.4762,
+    "f1": 0.3448
+  },
+  "Logistic Regression": {
+    "roc_auc": 0.7328,
+    "accuracy": 0.695,
+    "precision": 0.3827,
+    "recall": 0.7381,
+    "f1": 0.5041
+  },
+  "Random Forest": {
+    "roc_auc": 0.7751,
+    "accuracy": 0.795,
+    "precision": 0.5556,
+    "recall": 0.119,
+    "f1": 0.1961
+  },
+  "XGBoost": {
+    "roc_auc": 0.7595,
+    "accuracy": 0.79,
+    "precision": 0.5,
+    "recall": 0.4762,
+    "f1": 0.4878
+  },
+  "Tuned Random Forest": {
+    "roc_auc": 0.77,
+    "accuracy": 0.795,
+    "precision": 0.5143,
+    "recall": 0.4286,
+    "f1": 0.4675
+  },
+  "_best": "tuned_random_forest",
+  "_best_params": {
+    "clf__n_estimators": 100,
+    "clf__min_samples_leaf": 2,
+    "clf__max_features": "log2",
+    "clf__max_depth": null
+  },
+  "_n_samples": 664,
+  "_behavioral_features": [
+    "orders_count",
+    "valor_min",
+    "valor_max",
+    "valor_mean",
+    "valor_median",
+    "valor_std",
+    "delay_mean",
+    "delay_max",
+    "pct_orders_delayed",
+    "recency_days",
+    "orders_per_month",
+    "log_valor_mean",
+    "log_valor_max",
+    "log_valor_min",
+    "log_valor_median",
+    "log_valor_std",
+    "has_any_delay",
+    "delay_spike_ratio"
+  ],
+  "_lift_vs_app_only": 0.1467
+}

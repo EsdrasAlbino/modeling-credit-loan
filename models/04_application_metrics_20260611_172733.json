@@ -1,0 +1,37 @@
+{
+  "Logistic Regression": {
+    "roc_auc": 0.749,
+    "accuracy": 0.6844,
+    "precision": 0.4974,
+    "recall": 0.6667,
+    "f1": 0.5697
+  },
+  "Random Forest": {
+    "roc_auc": 0.7377,
+    "accuracy": 0.7233,
+    "precision": 0.5789,
+    "recall": 0.4291,
+    "f1": 0.4929
+  },
+  "XGBoost": {
+    "roc_auc": 0.7334,
+    "accuracy": 0.7044,
+    "precision": 0.5276,
+    "recall": 0.5426,
+    "f1": 0.535
+  },
+  "Tuned Logistic Regression": {
+    "roc_auc": 0.7741,
+    "accuracy": 0.7133,
+    "precision": 0.5333,
+    "recall": 0.6809,
+    "f1": 0.5981
+  },
+  "_best": "tuned_logistic_regression",
+  "_best_params": {
+    "clf__n_estimators": 400,
+    "clf__min_samples_leaf": 5,
+    "clf__max_features": "sqrt",
+    "clf__max_depth": 30
+  }
+}

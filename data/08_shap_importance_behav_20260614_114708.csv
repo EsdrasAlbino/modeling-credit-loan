@@ -1,0 +1,84 @@
+feature,mean_abs_shap
+idade_cnpj_mid,0.038432821315311505
+delay_mean,0.03745448274070225
+orders_per_month,0.03694982324317696
+delay_max,0.03330827372607788
+pct_orders_delayed,0.025929605170819693
+delay_spike_ratio,0.025817575553871208
+recency_days,0.025675284897111243
+capital_social_mid,0.013370250129370978
+serasa_socio_tem_negativacao,0.011812725288018567
+segmento_cliente_Segmento 20,0.010147029474340293
+segmento_cliente_Segmento 15,0.010028632647102388
+ifood_faixa_preco_missing,0.009266380183692385
+valor_max,0.008953322077151528
+valor_mean,0.008644291244479834
+log_valor_mean,0.008020500116401359
+serasa_contagem_protestos,0.007952321045014516
+natureza_juridica_213-5 - Empresário (Individual),0.0068201533639181
+valor_std,0.0066883358638932305
+orders_count,0.006555692182839128
+cnae_divisao_53,0.0055880287352606615
+log_valor_max,0.005243043355215373
+log_valor_std,0.005170419422981369
+segmento_cliente_Segmento 5,0.004897407361190971
+serasa_n_setores,0.004706455826765161
+serasa_contagem_negativacoes,0.004601299073149781
+fonte_cliente_Fonte 5,0.004453689136221065
+cnae_divisao_39,0.004344129998244392
+has_any_delay,0.004048824653510265
+natureza_juridica_206-2 - Sociedade Empresária Limitada,0.003864851472069624
+cnae_divisao_77,0.0031281343818257167
+has_serasa_negativacao,0.0030266589503214754
+has_google_maps,0.002978562076520436
+valor_median,0.0024414014275465083
+ifood_faixa_preco_$,0.002314797674717349
+has_ifood,0.0022646348114542586
+segmento_cliente_Segmento 18,0.0022523587575090922
+log_valor_min,0.001932635209878177
+segmento_cliente_Segmento 10,0.0019087243373032455
+segmento_cliente_Segmento 17,0.0017134545979616235
+segmento_cliente_Segmento 16,0.0016637536717132584
+log_valor_median,0.001532787415518283
+segmento_cliente_Segmento 3,0.0012251756108496085
+valor_min,0.0012007167843842712
+fonte_cliente_Fonte 2,0.001106869159055471
+segmento_cliente_Segmento 19,0.001103262367411355
+segmento_cliente_Segmento 13,0.0008769688979699445
+segmento_cliente_Segmento 9,0.000777114169951691
+segmento_cliente_Segmento 7,0.0005587305143245443
+segmento_cliente_Segmento 14,0.00042695485907270827
+segmento_cliente_Segmento 11,0.00040570124102982247
+segmento_cliente_Segmento 2,0.0003209915715048911
+cnae_divisao_25,0.0002835842347658018
+ifood_faixa_preco_$$$,0.00025186557997442237
+cnae_divisao_97,0.00024986707426856837
+ifood_faixa_preco_$$,0.00016926207848181574
+cnae_divisao_23,0.00016114232356831426
+segmento_cliente_Segmento 6,8.526269907299204e-05
+cnae_divisao_74,8.014764561900307e-05
+google_maps_avaliacao_mid,6.776545184602925e-05
+cnae_divisao_76,6.677321875172103e-05
+segmento_cliente_Segmento 4,3.135489209265424e-05
+segmento_cliente_Segmento 12,0.0
+natureza_juridica_224-0 - Sociedade Simples Limitada,0.0
+cnae_divisao_64,0.0
+cnae_divisao_79,0.0
+cnae_divisao_78,0.0
+natureza_juridica_230-5 - Empresa Individual de Responsabilidade Limitada (de Natureza Empresária),0.0
+cnae_divisao_86,0.0
+cnae_divisao_88,0.0
+cnae_divisao_93,0.0
+google_maps_tem_website,0.0
+cnae_divisao_29,0.0
+cnae_divisao_33,0.0
+cnae_divisao_30,0.0
+cnae_divisao_26,0.0
+fonte_cliente_Fonte 3,0.0
+cnae_divisao_16,0.0
+cnae_divisao_12,0.0
+fonte_cliente_Fonte 4,0.0
+ifood_faixa_preco_$$$$$,0.0
+ifood_faixa_preco_$$$$,0.0
+segmento_cliente_Segmento 21,0.0
+segmento_cliente_Segmento 8,0.0

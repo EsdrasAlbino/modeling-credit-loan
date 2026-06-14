@@ -1,0 +1,86 @@
+{
+  "Application Model": {
+    "algorithm": "XGBoost (tuned)",
+    "training_scope": "3,000 clients (70% train / 30% test)",
+    "features": "41 application-only features (Serasa, CNAE, segment, iFood, Google Maps)",
+    "target": "inadimplente (binary: 0=adimplente, 1=inadimplente)",
+    "primary_metric": "ROC-AUC = 0.7721 (test set)",
+    "top_drivers": [
+      "idade_cnpj_mid",
+      "serasa_socio_tem_negativacao",
+      "serasa_n_setores",
+      "segmento_cliente_Segmento 16",
+      "fonte_cliente_Fonte 5"
+    ],
+    "intended_use": "Score new clients with no purchase history at registration time",
+    "not_intended_for": "Clients with \u22651 order \u2014 use Behavioral Model via Router instead",
+    "assumptions": [
+      "Serasa data is current at scoring time",
+      "iFood/Google absence means client is not on the platform (not a data error)",
+      "CNAE division is a valid proxy for business sector risk"
+    ],
+    "limitations": [
+      "No temporal features \u2014 does not capture recent changes in client financials",
+      "High cardinality in municipio was dropped \u2014 geographic micro-effects not captured",
+      "Relies on Serasa data quality; degraded if Serasa is stale or unavailable"
+    ],
+    "known_failure_modes": [
+      "Overconfident on clients with no Serasa record (score may underestimate risk)",
+      "Segments with low representation in training data may have uncalibrated scores"
+    ]
+  },
+  "Behavioral Model": {
+    "algorithm": "Random Forest (tuned)",
+    "training_scope": "664 clients with \u22651 order (70% train / 30% test)",
+    "features": "53 features = 41 application + 18 behavioral (order stats, delays, recency)",
+    "target": "inadimplente (binary)",
+    "primary_metric": "ROC-AUC = 0.77  |  Lift vs. app-only = +0.1467",
+    "top_drivers": [
+      "idade_cnpj_mid",
+      "delay_mean",
+      "orders_per_month",
+      "delay_max",
+      "pct_orders_delayed"
+    ],
+    "intended_use": "Re-score active clients that already have purchase history",
+    "not_intended_for": "New clients with no order history (Router gates them to Application Model)",
+    "assumptions": [
+      "Order history reflects the same CNPJ as the credit application",
+      "Behavioral aggregates use all available history (no time-window restriction)",
+      "Delay data is accurate and not affected by system recording errors"
+    ],
+    "limitations": [
+      "Only 664 training clients \u2014 smaller than Application Model, higher variance",
+      "orders_count near-constant (\u22483) \u2014 frequency signal mostly from orders_per_month",
+      "No temporal ordering within order history \u2014 cannot detect deteriorating patterns"
+    ],
+    "known_failure_modes": [
+      "Clients with 1\u20132 orders get noisy behavioral scores (cold start)",
+      "Very high order value outliers (max=5M) can dominate log_valor features"
+    ]
+  },
+  "Model Router": {
+    "algorithm": "Rule-based (Score A threshold=0.5, Score B threshold=0.6) + optional ML Decision Tree",
+    "routing_tiers": 3,
+    "score_A_formula": "0 if no orders; 0.5 + 0.5 x min(1, orders_per_month/10) if has orders",
+    "score_B_formula": "1 - |p_app - 0.5| x 2  (application model uncertainty)",
+    "system_auc": "0.85 (vs. baseline 0.8044)",
+    "routing_lift": "+0.0456 ROC-AUC vs. single-model baseline",
+    "manual_review_pct": "44.6%",
+    "intended_use": "Entry point for all credit decisions \u2014 determines which model to invoke",
+    "not_intended_for": "Real-time scoring under strict latency constraints (runs two models)",
+    "assumptions": [
+      "orders_per_month is available at scoring time (computed from order history)",
+      "Application Model probability is calibrated enough for score_B to be meaningful"
+    ],
+    "limitations": [
+      "MANUAL_REVIEW tier is ~44.6% of clients \u2014 significant operational load",
+      "score_A is binary in nature (0 vs 0.5-1.0) \u2014 clients with 1 order get same gate as 100+"
+    ],
+    "governance_notes": [
+      "All routing decisions are auditable: score_A and score_B are persisted per client",
+      "Threshold changes (THRESHOLD_A, THRESHOLD_B) require re-validation of system AUC",
+      "MANUAL_REVIEW clients should be monitored for disparate impact across segments"
+    ]
+  }
+}
